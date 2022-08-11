@@ -40,6 +40,7 @@ function DonughtChartAllTweets() {
             nameKey="name"
             innerRadius={110}
             outerRadius={140}
+            padding={0}
           >
             {data.map((entry, index) => (
               <Cell fill={colors[index]} />

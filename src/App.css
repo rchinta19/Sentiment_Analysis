@@ -29,7 +29,7 @@
   align-items: flex-start;
   padding-left: 160px;
   margin-left: 50px;
-  gap: 2px;
+  gap: 10px;
 }
 .color-tweet-represent > div {
   align-self: center;
