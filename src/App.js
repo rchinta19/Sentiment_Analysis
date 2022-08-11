@@ -1,77 +1,11 @@
 import "./App.css";
-import { PieChart, Pie } from "recharts";
+import MainContainerDounght from "./Components/GraphComponents/MainContainerDounght";
+import Header from "./Components/Header/Header";
 function App() {
-  const data01 = [
-    {
-      name: "Group A",
-      value: 400,
-    },
-    {
-      name: "Group B",
-      value: 300,
-    },
-    {
-      name: "Group C",
-      value: 300,
-    },
-    {
-      name: "Group D",
-      value: 200,
-    },
-    {
-      name: "Group E",
-      value: 278,
-    },
-    {
-      name: "Group F",
-      value: 189,
-    },
-  ];
-  const data02 = [
-    {
-      name: "Group A",
-      value: 2400,
-    },
-    {
-      name: "Group B",
-      value: 4567,
-    },
-    {
-      name: "Group C",
-      value: 1398,
-    },
-    {
-      name: "Group D",
-      value: 9800,
-    },
-    {
-      name: "Group E",
-      value: 3908,
-    },
-    {
-      name: "Group F",
-      value: 4800,
-    },
-  ];
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>D3 Implementation</h1>
-      </header>
-      <div>
-        <PieChart width={730} height={250}>
-          <Pie
-            data={data02}
-            dataKey="value"
-            nameKey="name"
-            cx="50%"
-            cy="50%"
-            innerRadius={60}
-            outerRadius={80}
-            fill="#82ca9d"
-          />
-        </PieChart>
-      </div>
+      <Header />
+      <MainContainerDounght />
     </div>
   );
 }
