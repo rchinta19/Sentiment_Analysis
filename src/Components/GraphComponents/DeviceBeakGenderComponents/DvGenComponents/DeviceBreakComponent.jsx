@@ -30,7 +30,7 @@ function DeviceBreakComponent() {
   const deviceChangeHandler = (e) => {
     setDeviceCount(e.target.value);
   };
-  const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
+  const COLORS = ["#AB47BC", "#9CCC65", "#29B6F6"];
 
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({

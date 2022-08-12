@@ -59,7 +59,7 @@ function SentimentOverTimeComponent() {
   return (
     <div className="geo-tweet-barchart">
       <div>
-        <h2 className="grapheads">Geographical Tweets</h2>
+        <h2 className="grapheads">Sentiment Over Time</h2>
       </div>
       <div className="select-muis">
         <FormControl fullWidth>
@@ -88,20 +88,20 @@ function SentimentOverTimeComponent() {
             type="monotone"
             dataKey="Positive"
             stroke="#66BB6A"
-            strokeWidth={2}
+            strokeWidth={5}
           />
 
           <Line
             type="monotone"
             dataKey="Neutral"
             stroke="#FFCA28"
-            strokeWidth={2}
+            strokeWidth={5}
           />
           <Line
             type="monotone"
             dataKey="Negative"
             stroke="#EF5350"
-            strokeWidth={2}
+            strokeWidth={5}
           />
         </LineChart>
       </div>
