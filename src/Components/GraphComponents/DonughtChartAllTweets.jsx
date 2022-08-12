@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { PieChart, Pie, Tooltip, Cell, Label } from "recharts";
 import Stack from "@mui/material/Stack";
@@ -27,6 +27,11 @@ function DonughtChartAllTweets() {
   ];
   const colors = ["#00b4fb", "#00ad74", "#363cf0", "#ffae00", "#914cdc"];
   const onHoverEvent = () => {};
+  useEffect(() => {
+    fetch("https://2bb0-103-252-145-180.in.ngrok.io/api/data")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+  }, []);
   return (
     <Grid container direction="row" lg md={6} sx={{ my: 1 }} sm={12}>
       <Grid item xs={6}>
@@ -67,7 +72,7 @@ function DonughtChartAllTweets() {
       <Grid item lg md={6} sm={12} sx={{ p: 6 }}>
         <Stack direction="column">
           {data.map((entry, index) => (
-            <div className="color-tweet-represent">
+            <div className="color-tweet-represent" key={index}>
               <div style={{ backgroundColor: `${colors[index]}` }}></div>
               <span>{entry.name}</span>
             </div>
