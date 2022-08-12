@@ -9,7 +9,14 @@ import DonughtChartAllTweets from "./DonughtChartAllTweets";
 function MainContainerDounght() {
   const handleChange = () => {};
   return (
-    <Grid container direction="column" alignItems="center" spacing={2} className="main-donught-container">
+    <Grid
+      fullWidth
+      container
+      direction="column"
+      alignItems="center"
+      spacing={2}
+      className="main-donught-container"
+    >
       <Grid item xs={12} sx={{ width: "450px" }}>
         <OutlinedInput
           fullWidth
@@ -22,17 +29,17 @@ function MainContainerDounght() {
               <SearchIcon aria-label="toggle password visibility" edge="end" />
             </InputAdornment>
           }
-          label="Password"
+          label="Search"
         />
       </Grid>
       <Grid item>
-        <h1>#something</h1>
+        <h1 className="something">#something</h1>
       </Grid>
       <Grid item>
-        <h2>Start date & time - End date & time</h2>
+        <p>Start date & time - End date & time</p>
       </Grid>
       <Grid item>
-        <h4>Total Tweets & Analyzed Tweets</h4>
+        <h2>Total Tweets & Analyzed Tweets</h2>
       </Grid>
       <Grid item fullWidth xs={12} width="70vw">
         <DonughtChartAllTweets />

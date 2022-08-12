@@ -96,7 +96,7 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
               <Bar dataKey="Female" fill="#EC407A" />
             </>
           ) : (
-            <Bar dataKey="value" fill="#8884d8" />
+            <Bar dataKey="value" fill="#29B6F6" />
           )}
         </BarChart>
       </div>

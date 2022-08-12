@@ -33,7 +33,7 @@ function DonughtChartAllTweets() {
       .then((data) => console.log(data));
   }, []);
   return (
-    <Grid container direction="row" lg md={6} sx={{ my: 1 }} sm={12}>
+    <Grid container direction="row" lg md={6} sx={{ my: 5 }} sm={12}>
       <Grid item xs={6}>
         <PieChart width={280} height={280} onMouseEnter={onHoverEvent}>
           <text x={400} y={200} textAnchor="middle" dominantBaseline="middle">
