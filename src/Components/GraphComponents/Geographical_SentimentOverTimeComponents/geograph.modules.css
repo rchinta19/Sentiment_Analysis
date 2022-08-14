@@ -12,7 +12,10 @@
   width: 700px;
   padding: 40px 20px;
 }
-
+.bgraph {
+  min-width: 650px;
+  min-height: 523px;
+}
 .grapheads {
   size: 24px;
   font-weight: bold;
@@ -42,5 +45,9 @@
   }
   .geoSentiTime-container {
     padding: 50px;
+  }
+  .bgraph {
+    min-width: 350px;
+    min-height: 323px;
   }
 }

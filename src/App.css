@@ -54,3 +54,8 @@ h1.something {
 p {
   font-size: 24px;
 }
+/* footer */
+footer {
+  background-color: black;
+  color: white;
+}
