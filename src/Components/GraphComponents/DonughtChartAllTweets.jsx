@@ -2,22 +2,35 @@ import React, { useState, useCallback, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import { PieChart, Pie, Tooltip, Cell, Label } from "recharts";
 import Stack from "@mui/material/Stack";
+import { useSelector, useDispatch } from "react-redux";
 function DonughtChartAllTweets() {
-  const [cindex, setCIndex] = useState(0);
-  //   const data = [
-  //     {
-  //       Name: "Positive",
-  //       value: 100,
-  //     },
-  //     {
-  //       Name: "Negative",
-  //       value: 50,
-  //     },
-  //     {
-  //       Name: "Neutral",
-  //       value: 78,
-  //     },
-  //   ];
+  const allTweet = useSelector((state) => state.alltweet.value.totaltweets);
+
+  const [sentData, setSentData] = useState([
+    {
+      name: "Negative",
+      value: 1342,
+    },
+    {
+      name: "neutral",
+      value: 1145,
+    },
+    {
+      name: "Positve",
+      value: 1002,
+    },
+  ]);
+  const settingDatafun = () => {
+    const newData = Object.keys(allTweet).map((ele, index) => {
+      if (ele !== "total") {
+        return { name: ele, value: allTweet[ele] };
+      }
+    });
+    setSentData(newData);
+  };
+  useEffect(() => {
+    settingDatafun();
+  }, []);
   const data = [
     { name: "Text", value: 100 },
     { name: "Images", value: 150 },
@@ -40,7 +53,7 @@ function DonughtChartAllTweets() {
             My Donught has tweets
           </text>
           <Pie
-            data={data}
+            data={sentData}
             dataKey="value"
             nameKey="name"
             innerRadius={110}
@@ -51,7 +64,7 @@ function DonughtChartAllTweets() {
               <Cell fill={colors[index]} />
             ))}
             <Label width={30} position="center" className="label-center">
-              {`Total Tweets 120932190`}
+              {`Total Tweets ${allTweet["total"]}`}
             </Label>
           </Pie>
           <Tooltip />

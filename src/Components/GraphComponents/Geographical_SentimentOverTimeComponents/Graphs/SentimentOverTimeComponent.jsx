@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useSelector, useDispatch } from "react-redux";
 import {
   LineChart,
   Line,
@@ -14,7 +15,14 @@ import {
   ResponsiveContainer,
 } from "recharts";
 function SentimentOverTimeComponent() {
-  const data = [
+  const [range, setRange] = useState("This Week");
+  const selectChangeHandler = (e) => {
+    setRange(e.target.value);
+  };
+  const allTweet = useSelector(
+    (state) => state.alltweet.value.sentiment_over_time
+  );
+  const [cdata, setCData] = useState([
     {
       name: "Mon",
       Positive: 3490,
@@ -51,11 +59,38 @@ function SentimentOverTimeComponent() {
       Negative: 7557,
       Neutral: 1231,
     },
-  ];
-  const [range, setRange] = useState("This Week");
-  const selectChangeHandler = (e) => {
-    setRange(e.target.value);
+  ]);
+  const settingDatafun = () => {
+    let newFormedData = [];
+    let tweetclasses = Object.keys(allTweet);
+    let days = Object.keys(allTweet[tweetclasses[0]]);
+    days.forEach((ele, index) => {
+      let eachDay = { name: "", Positive: 0, Negative: 0, Neutral: 0 };
+      tweetclasses.forEach((cls, index) => {
+        eachDay.name = ele;
+        if (cls === "negitive_tweets") {
+          eachDay.Negative += allTweet[cls][ele];
+        }
+        if (cls === "neutral_tweets") {
+          eachDay.Neutral += allTweet[cls][ele];
+        }
+        if (cls === "positive_tweets") {
+          eachDay.Positive += allTweet[cls][ele];
+        }
+      });
+      newFormedData.push(eachDay);
+    });
+    setCData([...newFormedData]);
+    console.log(newFormedData);
   };
+  const [selectValue, setSelectValue] = useState({
+    state: "Telengana",
+    city: "Hydrabad",
+  });
+
+  useEffect(() => {
+    settingDatafun();
+  }, []);
   return (
     <div className="geo-tweet-barchart">
       <div>
@@ -79,7 +114,7 @@ function SentimentOverTimeComponent() {
         </FormControl>
       </div>
       <div>
-        <LineChart width={600} height={520} data={data}>
+        <LineChart width={600} height={520} data={cdata}>
           <XAxis dataKey="name" />
           <YAxis />
           <Tooltip />

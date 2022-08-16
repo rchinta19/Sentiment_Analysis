@@ -13,21 +13,44 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-
+import { useSelector, useDispatch } from "react-redux";
 function GeographicalTweetCompnent({ title, genderData, colors }) {
+  const allTweet = useSelector(
+    (state) => state.alltweet.value.geograpical_tweets
+  );
+  const [cdata, setCData] = useState(genderData || allTweet);
+  const settingDatafun = () => {
+    const newData = Object.keys(allTweet).map((ele, index) => {
+      switch (ele) {
+        case "monday":
+          return { name: "0hr", value: allTweet[ele] };
+          break;
+        case "tuesday":
+          return { name: "1hr", value: allTweet[ele] };
+          break;
+        case "wednesday":
+          return { name: "2hr", value: allTweet[ele] };
+          break;
+        case "thursday":
+          return { name: "3hr", value: allTweet[ele] };
+          break;
+        case "friday":
+          return { name: "4hr", value: allTweet[ele] };
+          break;
+        case "saturday":
+          return { name: "5hr", value: allTweet[ele] };
+          break;
+        case "sunday":
+          return { name: "6hr", value: allTweet[ele] };
+          break;
+      }
+    });
+    setCData(newData);
+  };
   const [selectValue, setSelectValue] = useState({
     state: "Telengana",
     city: "Hydrabad",
   });
-  const data = [
-    { name: "Mon", value: 120 },
-    { name: "Tue", value: 80 },
-    { name: "Wed", value: 175 },
-    { name: "Thu", value: 1210 },
-    { name: "Fri", value: 42 },
-    { name: "Sat", value: 656 },
-    { name: "Sun", value: 1256 },
-  ];
 
   const selectChangeHandler = (e) => {
     if (e.taget.name === "state") {
@@ -36,6 +59,9 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
       setSelectValue((prev) => ({ ...prev, city: e.target.value }));
     }
   };
+  useEffect(() => {
+    settingDatafun();
+  }, []);
   return (
     <div className="geo-tweet-barchart">
       <div>
@@ -81,7 +107,7 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
           <BarChart
             width={650}
             height={523}
-            data={genderData || data}
+            data={cdata}
             margin={{
               top: 5,
 
