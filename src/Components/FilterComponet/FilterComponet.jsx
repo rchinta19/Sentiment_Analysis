@@ -27,11 +27,11 @@ function FilterComponet() {
     gender: "Male",
     startDate: "DD/MM/YY",
     startTime: "",
-    endDate: "",
+    endDate: new Date.now(),
     endTime: "",
     location: "",
-    fromDate: Date.now(),
-    toDate: Date.now(),
+    fromDate: new Date.now(),
+    toDate: new Date.now(),
   });
   const formInputHandler = (e) => {
     switch (e.target.name) {
@@ -101,9 +101,10 @@ function FilterComponet() {
                 name="start-time"
                 value={formInputValues.startTime}
                 onChange={(newValue) => {
+                  console.log(newValue.format("HH:mm a"));
                   setFormInputValues((prev) => ({
                     ...prev,
-                    startTime: newValue.format("LTS"),
+                    startTime: newValue,
                   }));
                 }}
                 renderInput={(params) => <TextField {...params} />}
@@ -137,7 +138,7 @@ function FilterComponet() {
                 onChange={(newValue) => {
                   setFormInputValues((prev) => ({
                     ...prev,
-                    endTime: newValue.format("LTS"),
+                    endTime: newValue.format("HH:mm"),
                   }));
                   console.log(formInputValues);
                 }}

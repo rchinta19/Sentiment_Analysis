@@ -66,13 +66,11 @@ function DeviceBreakComponent() {
       <div className="select-muis">
         <div>
           <FormControl fullWidth>
-            <InputLabel id="select-device">Select device</InputLabel>
             <Select
               labelId="select-device"
               id="demo-simple-select"
               value={deviceCount[0].name}
               name="Device"
-              label="Device"
               onChange={setDeviceCount}
             >
               <MenuItem value={"iOS"}>iOs</MenuItem>

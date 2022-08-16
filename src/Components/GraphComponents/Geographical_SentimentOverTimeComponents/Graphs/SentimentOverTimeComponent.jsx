@@ -83,10 +83,7 @@ function SentimentOverTimeComponent() {
     setCData([...newFormedData]);
     console.log(newFormedData);
   };
-  const [selectValue, setSelectValue] = useState({
-    state: "Telengana",
-    city: "Hydrabad",
-  });
+  const [selectValue, setSelectValue] = useState("This Week");
 
   useEffect(() => {
     settingDatafun();
@@ -98,18 +95,16 @@ function SentimentOverTimeComponent() {
       </div>
       <div className="select-muis">
         <FormControl fullWidth>
-          <InputLabel id="demo-simple-select-label">State</InputLabel>
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
             value={range}
             name="range"
-            label="City"
             onChange={selectChangeHandler}
           >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
+            <MenuItem value={"This Week"}>This Week</MenuItem>
+            <MenuItem value={"This Month"}>This Month</MenuItem>
+            <MenuItem value={"This Year"}>This Year</MenuItem>
           </Select>
         </FormControl>
       </div>
