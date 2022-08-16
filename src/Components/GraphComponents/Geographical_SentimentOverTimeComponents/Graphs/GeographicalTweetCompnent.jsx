@@ -7,6 +7,7 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -75,30 +76,32 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
           </FormControl>
         </div>
       </div>
-      <div>
-        <BarChart
-          width={650}
-          height={523}
-          data={genderData || data}
-          margin={{
-            top: 5,
+      <div className="bgraph">
+        <ResponsiveContainer>
+          <BarChart
+            width={650}
+            height={523}
+            data={genderData || data}
+            margin={{
+              top: 5,
 
-            bottom: 5,
-          }}
-        >
-          <XAxis dataKey="name" />
-          <YAxis />
-          <Tooltip />
-          <Legend />
-          {genderData ? (
-            <>
-              <Bar dataKey="Male" fill="#42A5F5" />
-              <Bar dataKey="Female" fill="#EC407A" />
-            </>
-          ) : (
-            <Bar dataKey="value" fill="#29B6F6" />
-          )}
-        </BarChart>
+              bottom: 5,
+            }}
+          >
+            <XAxis dataKey="name" />
+            <YAxis />
+            <Tooltip />
+            <Legend />
+            {genderData ? (
+              <>
+                <Bar dataKey="Male" fill="#42A5F5" />
+                <Bar dataKey="Female" fill="#EC407A" />
+              </>
+            ) : (
+              <Bar dataKey="value" fill="#29B6F6" />
+            )}
+          </BarChart>
+        </ResponsiveContainer>
       </div>
     </div>
   );

@@ -33,9 +33,9 @@ export default function SentimeterWordCloudContainerComponent() {
                   label="Select-type"
                   onChange={"handleChange"}
                 >
-                  <MenuItem value={10}>Last Week</MenuItem>
-                  <MenuItem value={20}>Last Month</MenuItem>
-                  <MenuItem value={30}>This year</MenuItem>
+                  <MenuItem value={"LastWeek"}>Last Week</MenuItem>
+                  <MenuItem value={"LastMonth"}>Last Month</MenuItem>
+                  <MenuItem value={"LatYear"}>This year</MenuItem>
                 </Select>
               </FormControl>
             </Stack>

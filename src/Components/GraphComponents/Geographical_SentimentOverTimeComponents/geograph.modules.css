@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: 100vh;
+  /* height: 100vh; */
 }
 /* geoTweet component */
 .geo-tweet-barchart {
@@ -10,9 +10,12 @@
   flex-direction: column;
   gap: 10px;
   width: 700px;
-  padding: 40px 50px;
+  padding: 40px 20px;
 }
-
+.bgraph {
+  min-width: 650px;
+  min-height: 523px;
+}
 .grapheads {
   size: 24px;
   font-weight: bold;
@@ -42,5 +45,9 @@
   }
   .geoSentiTime-container {
     padding: 50px;
+  }
+  .bgraph {
+    min-width: 350px;
+    min-height: 323px;
   }
 }

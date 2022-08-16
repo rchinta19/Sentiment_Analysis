@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  /* background-color: #1d9bf0; */
 }
 /* Header component */
 .appstek-logo {
@@ -52,4 +53,9 @@ h1.something {
 }
 p {
   font-size: 24px;
+}
+/* footer */
+footer {
+  background-color: black;
+  color: white;
 }

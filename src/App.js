@@ -15,7 +15,7 @@ function App() {
       <SentimeterWordCloudContainerComponent />
       <GeographicaTweetOverTimeContainer />
       <DeviceBreak_GenderContainer />
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }
