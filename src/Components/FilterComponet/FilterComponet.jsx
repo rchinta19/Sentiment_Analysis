@@ -11,7 +11,9 @@ import TextField from "@mui/material/TextField";
 import { styled, createTheme, ThemeProvider } from "@mui/system";
 import MenuItem from "@mui/material/MenuItem";
 import Select from "@mui/material/Select";
+import moment from "moment";
 // Table row
+import { cities, state, countryList } from "../../citiesandstates";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
@@ -22,27 +24,36 @@ import Paper from "@mui/material/Paper";
 // table Body
 
 function FilterComponet() {
+  const currentDay = new Date();
   const [value, setValue] = React.useState([null, null]);
   const [formInputValues, setFormInputValues] = useState({
     gender: "Male",
-    startDate: "DD/MM/YY",
-    startTime: "",
-    endDate: new Date.now(),
-    endTime: "",
+    startDate: Date.now(),
+    startTime: new Date(),
+    endDate: Date.now(),
+    endTime: Date.now(),
+    country: "India",
+    city: "Hyderabad",
+    type: "Positive",
+    device: "Android",
     location: "",
-    fromDate: new Date.now(),
-    toDate: new Date.now(),
   });
   const formInputHandler = (e) => {
+    console.log(e.target.name);
     switch (e.target.name) {
       case "male":
-        setFormInputValues((prev) => ({ ...prev, male: !prev.male }));
+        setFormInputValues((prev) => ({ ...prev, male: e.target.value }));
         break;
 
       case "female":
-        setFormInputValues((prev) => ({ ...prev, female: !prev.female }));
+        setFormInputValues((prev) => ({ ...prev, female: e.target.value }));
         break;
-
+      case "country":
+        setFormInputValues((prev) => ({ ...prev, country: e.target.value }));
+        break;
+      case "city":
+        setFormInputValues((prev) => ({ ...prev, city: e.target.value }));
+        break;
       default:
         break;
     }
@@ -101,7 +112,6 @@ function FilterComponet() {
                 name="start-time"
                 value={formInputValues.startTime}
                 onChange={(newValue) => {
-                  console.log(newValue.format("HH:mm a"));
                   setFormInputValues((prev) => ({
                     ...prev,
                     startTime: newValue,
@@ -138,9 +148,8 @@ function FilterComponet() {
                 onChange={(newValue) => {
                   setFormInputValues((prev) => ({
                     ...prev,
-                    endTime: newValue.format("HH:mm"),
+                    endTime: newValue,
                   }));
-                  console.log(formInputValues);
                 }}
                 renderInput={(params) => <TextField {...params} />}
               />
@@ -156,12 +165,15 @@ function FilterComponet() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={"age"}
-              onChange={""}
+              name="country"
+              value={formInputValues.country}
+              onChange={formInputHandler}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {countryList.map((ele, index) => (
+                <MenuItem value={ele} key={index}>
+                  {ele}
+                </MenuItem>
+              ))}
             </Select>
           }
           labelPlacement="top"
@@ -172,12 +184,15 @@ function FilterComponet() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={"age"}
-              onChange={""}
+              value={formInputValues.city}
+              name="city"
+              onChange={formInputHandler}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              {cities.map((ele, index) => (
+                <MenuItem value={ele.name} key={ele}>
+                  {ele.name}
+                </MenuItem>
+              ))}
             </Select>
           }
           labelPlacement="top"
@@ -188,12 +203,17 @@ function FilterComponet() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={"age"}
-              onChange={""}
+              value={formInputValues.type}
+              onChange={(e) => {
+                setFormInputValues((prev) => ({
+                  ...prev,
+                  Type: e.target.value,
+                }));
+              }}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={"Positive"}>Positive</MenuItem>
+              <MenuItem value={"Negative"}>Negative</MenuItem>
+              <MenuItem value={"Neutral"}>Neutral</MenuItem>
             </Select>
           }
           labelPlacement="top"
@@ -204,12 +224,17 @@ function FilterComponet() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={"age"}
-              onChange={""}
+              value={formInputValues.device}
+              onChange={(e) => {
+                setFormInputValues((prev) => ({
+                  ...prev,
+                  device: e.target.value,
+                }));
+              }}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={"Android"}>Android</MenuItem>
+              <MenuItem value={"IOS"}>iOS</MenuItem>
+              <MenuItem value={"Web"}>Web</MenuItem>
             </Select>
           }
           labelPlacement="top"
@@ -220,12 +245,16 @@ function FilterComponet() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={"age"}
-              onChange={""}
+              value={formInputValues.gender}
+              onChange={(e) => {
+                setFormInputValues((prev) => ({
+                  ...prev,
+                  gender: e.target.value,
+                }));
+              }}
             >
-              <MenuItem value={10}>Ten</MenuItem>
-              <MenuItem value={20}>Twenty</MenuItem>
-              <MenuItem value={30}>Thirty</MenuItem>
+              <MenuItem value={"Male"}>Male</MenuItem>
+              <MenuItem value={"Female"}>Female</MenuItem>
             </Select>
           }
           labelPlacement="top"
