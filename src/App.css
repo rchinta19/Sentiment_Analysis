@@ -73,3 +73,9 @@ footer {
 .gauge-component {
   color: black;
 }
+.recharts-legend-wrapper {
+  right: -90px !important;
+}
+.recharts-legend-wrapper > ul li {
+  padding: 10px !important;
+}

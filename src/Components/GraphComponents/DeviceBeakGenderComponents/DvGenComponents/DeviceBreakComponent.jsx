@@ -13,6 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 function DeviceBreakComponent() {
+  const [deviceName, setDeviceName] = useState("iOS");
   const [deviceCount, setDeviceCount] = useState([
     {
       name: "iOS",
@@ -28,7 +29,7 @@ function DeviceBreakComponent() {
     },
   ]);
   const deviceChangeHandler = (e) => {
-    setDeviceCount(e.target.value);
+    // setDeviceCount(e.target.value);
   };
   const COLORS = ["#AB47BC", "#9CCC65", "#29B6F6"];
 
@@ -69,11 +70,13 @@ function DeviceBreakComponent() {
             <Select
               labelId="select-device"
               id="demo-simple-select"
-              value={deviceCount[0].name}
+              value={deviceName}
               name="Device"
-              onChange={setDeviceCount}
+              onChange={(e) => {
+                setDeviceName(e.target.value);
+              }}
             >
-              <MenuItem value={"iOS"}>iOs</MenuItem>
+              <MenuItem value={"iOS"}>Select Device</MenuItem>
               <MenuItem value={"Android"}>Android</MenuItem>
               <MenuItem value={"Web"}>Web</MenuItem>
             </Select>
@@ -81,7 +84,7 @@ function DeviceBreakComponent() {
         </div>
       </div>
       <div>
-        <PieChart width={500} height={500}>
+        <PieChart width={550} height={500}>
           <Pie
             data={deviceCount}
             cx="50%"
@@ -100,7 +103,7 @@ function DeviceBreakComponent() {
             ))}
           </Pie>
           <Tooltip />
-          <Legend />
+          <Legend layout="vertical" verticalAlign="middle" align="right" />
         </PieChart>
       </div>
     </div>
