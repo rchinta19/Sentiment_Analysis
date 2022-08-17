@@ -10,10 +10,10 @@ const initialState = {
     totaltweets: {
       total: 5844,
       text: 5413,
-      image: 0,
-      video: 0,
+      image: 300,
+      video: 290,
       text_image: 431,
-      text_video: 0,
+      text_video: 100,
     },
     sentiment_meter: {
       sentiment_type: ["all", "neutral", "negative", "positive"],

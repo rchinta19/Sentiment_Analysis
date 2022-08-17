@@ -22,11 +22,10 @@ function DonughtChartAllTweets() {
   ]);
   const settingDatafun = () => {
     const newData = Object.keys(allTweet).map((ele, index) => {
-      if (ele !== "total") {
-        return { name: ele, value: allTweet[ele] };
-      }
+      return { name: ele, value: allTweet[ele] };
     });
-    setSentData(newData);
+
+    setSentData(newData.slice(1));
   };
   useEffect(() => {
     settingDatafun();
@@ -38,13 +37,13 @@ function DonughtChartAllTweets() {
     { name: "Text & Images", value: 30 },
     { name: "Text & Videos", value: 123 },
   ];
-  const colors = ["#00b4fb", "#00ad74", "#363cf0", "#ffae00", "#914cdc"];
+  const colors = ["#FFC84C", "#00B4FB", "#914CDC", "#00AD74", "#363CF0"];
   const onHoverEvent = () => {};
-  useEffect(() => {
-    fetch("https://2bb0-103-252-145-180.in.ngrok.io/api/data")
-      .then((res) => res.json())
-      .then((data) => console.log(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch("https://2bb0-103-252-145-180.in.ngrok.io/api/data")
+  //     .then((res) => res.json())
+  //     .then((data) => console.log(data));
+  // }, []);
   return (
     <Grid container direction="row" lg md={6} sx={{ my: 5 }} sm={12}>
       <Grid item xs={6}>
@@ -60,9 +59,9 @@ function DonughtChartAllTweets() {
             outerRadius={140}
             padding={0}
           >
-            {data.map((entry, index) => (
-              <Cell fill={colors[index]} />
-            ))}
+            {colors.map((entry, index) => {
+              return <Cell fill={colors[index]} />;
+            })}
             <Label width={30} position="center" className="label-center">
               {`Total Tweets ${allTweet["total"]}`}
             </Label>
@@ -84,7 +83,8 @@ function DonughtChartAllTweets() {
       </Grid>
       <Grid item lg md={6} sm={12} sx={{ p: 6 }}>
         <Stack direction="column">
-          {data.map((entry, index) => (
+          {/* console.log(sentData) */}
+          {sentData.map((entry, index) => (
             <div className="color-tweet-represent" key={index}>
               <div style={{ backgroundColor: `${colors[index]}` }}></div>
               <span>{entry.name}</span>
