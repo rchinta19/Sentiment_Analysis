@@ -14,11 +14,11 @@ function App() {
   const dispatch = useDispatch();
   const allTweet = useSelector((state) => state.alltweet.value);
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/data")
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(Tweet(data));
-      });
+    // fetch("http://127.0.0.1:8000/api/data")
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     dispatch(Tweet(data));
+    //   });
   }, []);
   return (
     <div className="App">

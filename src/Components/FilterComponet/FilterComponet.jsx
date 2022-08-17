@@ -21,6 +21,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
+import DeleteIcon from "@mui/icons-material/Delete";
+import SendIcon from "@mui/icons-material/Send";
+import Stack from "@mui/material/Stack";
 // table Body
 
 function FilterComponet() {
@@ -258,8 +262,21 @@ function FilterComponet() {
             </Select>
           }
           labelPlacement="top"
+        />{" "}
+        <FormControlLabel
+          control={
+            <Button
+              variant="outlined"
+              startIcon={<DeleteIcon />}
+              sx={{ height: "40px" }}
+            >
+              filter
+            </Button>
+          }
+          labelPlacement="top"
         />
       </FormGroup>
+
       <TableContainer component={Paper}>
         <Table aria-label="customized table">
           <TableHead>

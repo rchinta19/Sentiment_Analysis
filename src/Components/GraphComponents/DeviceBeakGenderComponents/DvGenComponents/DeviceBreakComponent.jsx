@@ -12,7 +12,11 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import { useSelector, useDispatch } from "react-redux";
+
 function DeviceBreakComponent() {
+  const allTweet = useSelector((state) => state.alltweet.value.device);
+
   const [deviceName, setDeviceName] = useState("iOS");
   const [deviceCount, setDeviceCount] = useState([
     {
@@ -32,7 +36,17 @@ function DeviceBreakComponent() {
     // setDeviceCount(e.target.value);
   };
   const COLORS = ["#AB47BC", "#9CCC65", "#29B6F6"];
-
+  const settingDatafun = () => {
+    const newData = Object.keys(allTweet).map((ele, index) => {
+      if (ele !== "total") {
+        return { name: ele, value: allTweet[ele] };
+      }
+    });
+    setDeviceCount(newData);
+  };
+  useEffect(() => {
+    settingDatafun();
+  }, []);
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
     cx,
@@ -76,7 +90,7 @@ function DeviceBreakComponent() {
                 setDeviceName(e.target.value);
               }}
             >
-              <MenuItem value={"iOS"}>Select Device</MenuItem>
+              <MenuItem value={"iOS"}>ios</MenuItem>
               <MenuItem value={"Android"}>Android</MenuItem>
               <MenuItem value={"Web"}>Web</MenuItem>
             </Select>

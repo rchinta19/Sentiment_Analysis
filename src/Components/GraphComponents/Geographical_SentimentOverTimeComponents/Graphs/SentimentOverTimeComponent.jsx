@@ -22,6 +22,7 @@ function SentimentOverTimeComponent() {
   const allTweet = useSelector(
     (state) => state.alltweet.value.sentiment_over_time
   );
+  console.log(allTweet);
   const [cdata, setCData] = useState([
     {
       name: "Mon",

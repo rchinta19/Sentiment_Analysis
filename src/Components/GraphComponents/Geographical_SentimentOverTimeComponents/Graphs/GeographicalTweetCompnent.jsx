@@ -23,25 +23,23 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
   const settingDatafun = () => {
     const newData = Object.keys(allTweet).map((ele, index) => {
       switch (ele) {
-        case "monday":
-          return { name: "0hr", value: allTweet[ele] };
-          break;
-        case "tuesday":
+        case "1Hours":
           return { name: "1hr", value: allTweet[ele] };
           break;
-        case "wednesday":
+        case "2Hours":
           return { name: "2hr", value: allTweet[ele] };
           break;
-        case "thursday":
+
+        case "3Hours":
           return { name: "3hr", value: allTweet[ele] };
           break;
-        case "friday":
+        case "4Hours":
           return { name: "4hr", value: allTweet[ele] };
           break;
-        case "saturday":
+        case "5Hours":
           return { name: "5hr", value: allTweet[ele] };
           break;
-        case "sunday":
+        case "6Hours":
           return { name: "6hr", value: allTweet[ele] };
           break;
       }
@@ -63,7 +61,7 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
       setSelectValue((prev) => ({ ...prev, city: e.target.value }));
     }
     if (e.target.name == "time") {
-      setSelectValue((prev) => ({ ...prev, city: e.target.value }));
+      setSelectValue((prev) => ({ ...prev, time: e.target.value }));
     }
     console.log();
   };
@@ -90,7 +88,7 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
               >
                 <MenuItem value={"This Week"}>This Week</MenuItem>
                 <MenuItem value={"Month"}>Month</MenuItem>
-                <MenuItem value={"F/M"}>Year</MenuItem>
+                <MenuItem value={"year"}>Year</MenuItem>
               </Select>
             ) : (
               <Select

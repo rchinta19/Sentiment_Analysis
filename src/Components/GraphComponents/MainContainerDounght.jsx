@@ -5,8 +5,13 @@ import OutlinedInput from "@mui/material/OutlinedInput";
 import InputAdornment from "@mui/material/InputAdornment";
 import SearchIcon from "@mui/icons-material/Search";
 import DonughtChartAllTweets from "./DonughtChartAllTweets";
+import { useSelector, useDispatch } from "react-redux";
 
 function MainContainerDounght() {
+  const { hashtag, start_time, end_time } = useSelector(
+    (state) => state.alltweet.value.display_text
+  );
+
   const handleChange = () => {};
   return (
     <Grid
@@ -33,10 +38,12 @@ function MainContainerDounght() {
         />
       </Grid>
       <Grid item>
-        <h1 className="something">#something</h1>
+        <h1 className="something">{hashtag}</h1>
       </Grid>
       <Grid item>
-        <p>Start date & time - End date & time</p>
+        <p>
+          {start_time} & - {end_time}
+        </p>
       </Grid>
       <Grid item>
         <h2>Total Tweets & Analyzed Tweets</h2>

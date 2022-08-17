@@ -10,7 +10,10 @@ import { useSelector, useDispatch } from "react-redux";
 // import { PieChart, Pie, Tooltip, Cell } from "recharts";
 function SentimentMeter() {
   const allTweet = useSelector((state) => state.alltweet.value.sentiment_meter);
-  const [tweetClassType, setTweetClassType] = useState("Positive");
+  const [tweetClassType, setTweetClassType] = useState({
+    tweetclass: "Positive",
+    meterPlace: 0.36,
+  });
   const [sentData, setSentData] = useState([123, 555, 673]);
 
   useEffect(() => {
@@ -19,7 +22,7 @@ function SentimentMeter() {
       .then((res) => res.json())
       .then((data) => {
         let x = Object.keys(allTweet).map((ele, index) => {
-          return data[ele];
+          if (index !== 0) return data[ele];
         });
         console.log(x);
         setSentData(x);
@@ -37,15 +40,39 @@ function SentimentMeter() {
           <Select
             labelId="demo-simple-select-label"
             id="demo-simple-select"
-            value={tweetClassType}
+            value={tweetClassType.tweetclass}
             name="range"
             onChange={(e) => {
-              setTweetClassType(e.target.value);
+              let mplace = () => {
+                let k = 0;
+                if (e.target.value === "Positive") {
+                  k = 2;
+                }
+                if (e.target.value === "Negative") {
+                  k = 1;
+                }
+                if (e.target.value === "Neutral") {
+                  k = 0;
+                }
+                let sum = 0;
+                for (let mad = 0; mad < sentData.length - 1; mad++) {
+                  sum += sentData[mad];
+                }
+                let i = sentData[k] / sum;
+
+                return parseFloat(i).toFixed(2);
+              };
+
+              setTweetClassType({
+                tweetclass: e.target.value,
+                meterPlace: mplace(),
+              });
             }}
           >
             <MenuItem value={"All"}>all</MenuItem>
             <MenuItem value={"Positive"}>Positive</MenuItem>
             <MenuItem value={"Negative"}>Negative</MenuItem>
+            <MenuItem value={"Neutral"}>Neutral</MenuItem>
           </Select>
         </FormControl>
       </div>
@@ -54,7 +81,7 @@ function SentimentMeter() {
           id="gauge-chart5"
           arcsLength={[...sentData]}
           colors={["#5BE12C", "#F5CD19", "#EA4228"]}
-          percent={0.37}
+          percent={tweetClassType.meterPlace}
           arcPadding={0.0001}
         />
       </div>
