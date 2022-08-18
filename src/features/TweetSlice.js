@@ -71,7 +71,7 @@ const AllTweetSlice = createSlice({
   initialState,
   reducers: {
     allTweet: (state, action) => {
-      return { ...state, value: action.payload };
+      return { value: action.payload };
     },
   },
 });
