@@ -24,19 +24,14 @@ function DonughtChartAllTweets() {
     const newData = Object.keys(allTweet).map((ele, index) => {
       return { name: ele, value: allTweet[ele] };
     });
-
-    setSentData(newData.slice(1));
+    let indexOftotal = newData.indexOf("total");
+    setSentData((prev) => [...newData.slice(1)]);
   };
+
   useEffect(() => {
     settingDatafun();
-  }, []);
-  const data = [
-    { name: "Text", value: 100 },
-    { name: "Images", value: 150 },
-    { name: "Videos", value: 72 },
-    { name: "Text & Images", value: 30 },
-    { name: "Text & Videos", value: 123 },
-  ];
+  }, [allTweet]);
+
   const colors = ["#FFC84C", "#00B4FB", "#914CDC", "#00AD74", "#363CF0"];
   const onHoverEvent = () => {};
   // useEffect(() => {

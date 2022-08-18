@@ -22,7 +22,7 @@ function SentimentOverTimeComponent() {
   const allTweet = useSelector(
     (state) => state.alltweet.value.sentiment_over_time
   );
-  console.log(allTweet);
+  // console.log(allTweet);
   const [cdata, setCData] = useState([
     {
       name: "Mon",
@@ -82,13 +82,13 @@ function SentimentOverTimeComponent() {
       newFormedData.push(eachDay);
     });
     setCData([...newFormedData]);
-    console.log(newFormedData);
+    // console.log(newFormedData);
   };
   const [selectValue, setSelectValue] = useState("This Week");
 
   useEffect(() => {
     settingDatafun();
-  }, []);
+  }, [allTweet]);
   return (
     <div className="geo-tweet-barchart">
       <div>

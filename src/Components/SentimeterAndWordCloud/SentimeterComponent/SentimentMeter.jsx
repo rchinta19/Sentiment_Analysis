@@ -15,19 +15,19 @@ function SentimentMeter() {
     meterPlace: 0.36,
   });
   const [sentData, setSentData] = useState([123, 555, 673]);
-
-  useEffect(() => {
+  const settingDatafun = () => {
     const newSent = [];
+    let x = Object.keys(allTweet).map((ele, index) => {
+      if (index !== 0) return allTweet[ele];
+    });
+
+    setSentData(x);
+  };
+  useEffect(() => {
     fetch("https://2bb0-103-252-145-180.in.ngrok.io/api/data")
       .then((res) => res.json())
-      .then((data) => {
-        let x = Object.keys(allTweet).map((ele, index) => {
-          if (index !== 0) return data[ele];
-        });
-        console.log(x);
-        setSentData(x);
-      });
-  }, []);
+      .then((data) => {});
+  }, [allTweet]);
 
   const colors = ["#ef5350", "#ffa726", "#66bb6a"];
   return (

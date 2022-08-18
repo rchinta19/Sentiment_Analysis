@@ -46,7 +46,7 @@ function DeviceBreakComponent() {
   };
   useEffect(() => {
     settingDatafun();
-  }, []);
+  }, [allTweet]);
   const RADIAN = Math.PI / 180;
   const renderCustomizedLabel = ({
     cx,

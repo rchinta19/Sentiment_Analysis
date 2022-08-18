@@ -66,10 +66,11 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
     console.log();
   };
   useEffect(() => {
-    if (!genderData) {
+    if (genderData) {
+    } else {
       settingDatafun();
     }
-  }, []);
+  }, [allTweet]);
   return (
     <div className="geo-tweet-barchart">
       <div>

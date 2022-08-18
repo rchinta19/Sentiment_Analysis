@@ -9,10 +9,10 @@ const initialState = {
     },
     totaltweets: {
       total: 5844,
-      text: 5413,
+      text: 543,
       image: 300,
-      video: 290,
-      text_image: 431,
+      video: 90,
+      text_image: 31,
       text_video: 100,
     },
     sentiment_meter: {
@@ -71,7 +71,7 @@ const AllTweetSlice = createSlice({
   initialState,
   reducers: {
     allTweet: (state, action) => {
-      state.value = action.payload;
+      return { ...state, value: action.payload };
     },
   },
 });

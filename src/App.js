@@ -7,18 +7,26 @@ import Header from "./Components/Header/Header";
 import SentimeterWordCloudContainerComponent from "./Components/SentimeterAndWordCloud/SentimeterWordCloudContainerComponent";
 import Footer from "./Footer";
 import React, { useEffect, useState } from "react";
-import { allTweet } from "./features/TweetSlice";
+// import { allTweet } from "./features/TweetSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { allTweet as Tweet } from "./features/TweetSlice";
 function App() {
   const dispatch = useDispatch();
   const allTweet = useSelector((state) => state.alltweet.value);
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/data")
-      .then((res) => res.json())
-      .then((data) => {
-        dispatch(Tweet(data));
-      });
+    const intervelId = setInterval(() => {
+      fetch("https://62fdda8641165d66bfb2f60f.mockapi.io/sent/data/blog")
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          dispatch(Tweet(data));
+          return true;
+        });
+    }, 5000);
+
+    return () => {
+      clearInterval(intervelId);
+    };
   }, []);
   return (
     <div className="App">
