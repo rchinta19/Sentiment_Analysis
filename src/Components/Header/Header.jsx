@@ -15,7 +15,7 @@ function Header() {
           </Box>
         </Grid>
         <Grid item xs={9} sx={{ textAlign: "left" }}>
-          <h2 className="heading">Twitter Sentiment Analysis</h2>
+          <p className="heading">Twitter Sentiment Analysis</p>
         </Grid>
       </Grid>
     </Box>

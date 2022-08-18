@@ -42,16 +42,16 @@ function DonughtChartAllTweets() {
   return (
     <Grid container direction="row" lg md={6} sx={{ my: 5 }} sm={12}>
       <Grid item xs={6}>
-        <PieChart width={280} height={280} onMouseEnter={onHoverEvent}>
-          <text x={400} y={200} textAnchor="middle" dominantBaseline="middle">
+        <PieChart width={480} height={380} onMouseEnter={onHoverEvent}>
+          {/* <text x={400} y={200} textAnchor="middle" dominantBaseline="middle">
             My Donught has tweets
-          </text>
+          </text> */}
           <Pie
             data={sentData}
             dataKey="value"
             nameKey="name"
-            innerRadius={110}
-            outerRadius={140}
+            innerRadius={130}
+            outerRadius={180}
             padding={0}
           >
             {colors.map((entry, index) => {
