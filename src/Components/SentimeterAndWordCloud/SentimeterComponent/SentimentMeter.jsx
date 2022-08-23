@@ -14,26 +14,37 @@ function SentimentMeter() {
     tweetclass: "Positive",
     meterPlace: 0.36,
   });
+  console.log(allTweet);
   const [sentData, setSentData] = useState([123, 555, 673]);
   const settingDatafun = () => {
     const newSent = [];
-    let x = Object.keys(allTweet).map((ele, index) => {
-      if (index !== 0) return allTweet[ele];
+    allTweet.sentiment_type.forEach((ele, index) => {
+      switch (ele) {
+        case "neutral":
+          newSent.splice(1, 0, allTweet.sentimeter_count[index]);
+          break;
+        case "negative":
+          newSent.splice(0, 0, allTweet.sentimeter_count[index]);
+          break;
+        case "positive":
+          newSent.splice(2, 0, allTweet.sentimeter_count[index]);
+          break;
+        default:
+          break;
+      }
     });
 
-    setSentData(x);
+    setSentData(newSent);
   };
   useEffect(() => {
-    fetch("https://2bb0-103-252-145-180.in.ngrok.io/api/data")
-      .then((res) => res.json())
-      .then((data) => {});
+    settingDatafun();
   }, [allTweet]);
 
   const colors = ["#ef5350", "#ffa726", "#66bb6a"];
   return (
     <div className="geo-tweet-barchart">
       <div>
-        <h2 className="grapheads">Sentiment Over Time</h2>
+        <h2 className="grapheads">Sentiment Meter</h2>
       </div>
       <div className="select-muis">
         <FormControl fullWidth>
@@ -80,9 +91,10 @@ function SentimentMeter() {
         <GaugeChart
           id="gauge-chart5"
           arcsLength={[...sentData]}
-          colors={["#5BE12C", "#F5CD19", "#EA4228"]}
+          colors={["#EA4228", "#F5CD19", "#5BE12C"]}
           percent={tweetClassType.meterPlace}
-          arcPadding={0.0001}
+          arcPadding={0.001}
+          cornerRadius={0}
         />
       </div>
     </div>

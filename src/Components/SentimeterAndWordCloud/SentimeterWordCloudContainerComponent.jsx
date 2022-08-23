@@ -7,8 +7,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import SentimentMeter from "./SentimeterComponent/SentimentMeter";
-
+import { useSelector } from "react-redux";
 export default function SentimeterWordCloudContainerComponent() {
+  const imageurl = useSelector((state) => state.alltweet.value.wordcloud.url);
   return (
     <div className="geoSentiTime-container">
       <SentimentMeter />
@@ -16,11 +17,7 @@ export default function SentimeterWordCloudContainerComponent() {
         <div>
           <h2 className="grapheads">word Cloud</h2>
         </div>
-        <img
-          src={
-            "https://previews.123rf.com/images/boris15/boris151411/boris15141100132/33646721-independence-word-cloud-concept-vector-illustration.jpg"
-          }
-        />
+        <img src={imageurl} />
       </div>
     </div>
     // <Grid

@@ -26,6 +26,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 // table Body
+import FilterAltIcon from "@mui/icons-material/FilterAlt";
 
 function FilterComponet() {
   const currentDay = new Date();
@@ -267,7 +268,7 @@ function FilterComponet() {
           control={
             <Button
               variant="outlined"
-              startIcon={<DeleteIcon />}
+              startIcon={<FilterAltIcon />}
               sx={{ height: "40px" }}
             >
               filter
