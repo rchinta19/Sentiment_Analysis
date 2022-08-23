@@ -90,11 +90,12 @@ function SentimentMeter() {
       <div className="gauge-component">
         <GaugeChart
           id="gauge-chart5"
-          arcsLength={[...sentData]}
+          arcsLength={sentData}
           colors={["#EA4228", "#F5CD19", "#5BE12C"]}
           percent={tweetClassType.meterPlace}
           arcPadding={0.001}
           cornerRadius={0}
+          arcWidth={0.3}
         />
       </div>
     </div>

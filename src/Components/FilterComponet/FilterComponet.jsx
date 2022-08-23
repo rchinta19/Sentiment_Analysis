@@ -31,17 +31,18 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 function FilterComponet() {
   const currentDay = new Date();
   const [value, setValue] = React.useState([null, null]);
+  const date = new Date();
+
   const [formInputValues, setFormInputValues] = useState({
     gender: "Male",
-    startDate: Date.now(),
-    startTime: new Date(),
-    endDate: Date.now(),
-    endTime: Date.now(),
+    startDate: moment(new Date()).format("YYYY-MM-DD"),
+    startTime: moment(new Date()).format(),
+    endDate: moment(new Date()).format("YYYY-MM-DD"),
+    endTime: new Date(),
     country: "India",
     city: "Hyderabad",
     type: "Positive",
     device: "Android",
-    location: "",
   });
   const formInputHandler = (e) => {
     console.log(e.target.name);
@@ -102,7 +103,7 @@ function FilterComponet() {
                 onChange={(newValue) => {
                   setFormInputValues((prev) => ({
                     ...prev,
-                    startDate: newValue.format("DD/MM/YY"),
+                    startDate: newValue.format("l"),
                   }));
                 }}
                 renderInput={(params) => <TextField {...params} />}
@@ -119,7 +120,7 @@ function FilterComponet() {
                 onChange={(newValue) => {
                   setFormInputValues((prev) => ({
                     ...prev,
-                    startTime: newValue,
+                    startTime: newValue.format("LTS"),
                   }));
                 }}
                 renderInput={(params) => <TextField {...params} />}
@@ -136,7 +137,7 @@ function FilterComponet() {
                 onChange={(newValue) => {
                   setFormInputValues((prev) => ({
                     ...prev,
-                    endDate: newValue.format("DD/MM/YY"),
+                    endDate: newValue.format("l"),
                   }));
                 }}
                 renderInput={(params) => <TextField {...params} />}
@@ -153,7 +154,7 @@ function FilterComponet() {
                 onChange={(newValue) => {
                   setFormInputValues((prev) => ({
                     ...prev,
-                    endTime: newValue,
+                    endTime: newValue.format("LT"),
                   }));
                 }}
                 renderInput={(params) => <TextField {...params} />}
@@ -270,6 +271,9 @@ function FilterComponet() {
               variant="outlined"
               startIcon={<FilterAltIcon />}
               sx={{ height: "40px" }}
+              onClick={() => {
+                console.log(formInputValues);
+              }}
             >
               filter
             </Button>

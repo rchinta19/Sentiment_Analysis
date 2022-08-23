@@ -73,6 +73,7 @@ footer {
 /* gauge Component */
 .gauge-component {
   color: black;
+  width: 700px !important;
 }
 .recharts-legend-wrapper {
   right: -90px !important;
