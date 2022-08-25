@@ -8,8 +8,10 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import SentimentMeter from "./SentimeterComponent/SentimentMeter";
 import { useSelector } from "react-redux";
+// import img from 'E:/OneDrive_2022-06-13/twitter_sentiment_analysis/twitter_analysis/tweepy/Tweets/IndependenceDay'
 export default function SentimeterWordCloudContainerComponent() {
   const imageurl = useSelector((state) => state.alltweet.value.wordcloud.url);
+  // console.log(imageurl.split("//"))
   return (
     <div className="geoSentiTime-container">
       <SentimentMeter />
@@ -17,7 +19,7 @@ export default function SentimeterWordCloudContainerComponent() {
         <div>
           <h2 className="grapheads">word Cloud</h2>
         </div>
-        <img src={imageurl} />
+        <img src={imageurl}/>
       </div>
     </div>
     // <Grid

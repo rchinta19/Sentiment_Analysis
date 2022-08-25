@@ -21,13 +21,13 @@ function SentimentMeter() {
     allTweet.sentiment_type.forEach((ele, index) => {
       switch (ele) {
         case "neutral":
-          newSent.splice(1, 0, allTweet.sentimeter_count[index]);
+          newSent.splice(1, 0, allTweet.sentimeter_count[ele]);
           break;
         case "negative":
-          newSent.splice(0, 0, allTweet.sentimeter_count[index]);
+          newSent.splice(0, 0, allTweet.sentimeter_count[ele]);
           break;
         case "positive":
-          newSent.splice(2, 0, allTweet.sentimeter_count[index]);
+          newSent.splice(2, 0, allTweet.sentimeter_count[ele]);
           break;
         default:
           break;

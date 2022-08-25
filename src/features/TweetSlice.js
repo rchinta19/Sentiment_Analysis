@@ -22,7 +22,7 @@ const initialState = {
     wordcloud: {
       url: "https://previews.123rf.com/images/boris15/boris151411/boris15141100132/33646721-independence-word-cloud-concept-vector-illustration.jpg",
     },
-    geograpical_tweets: {
+    geographical_tweets: {
       "1Hours": 20,
       "2Hours": 253,
       "3Hours": 42,

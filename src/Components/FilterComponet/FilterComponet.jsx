@@ -107,7 +107,14 @@ function FilterComponet() {
     }
     return sum;
   }, [formInputValues.device, allTweet]);
-
+const fetchTweetApi = ()=>{
+  fetch('http://127.0.0.1:8000/api/filter',{method:"POST",
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body:JSON.stringify(formInputValues)}).then((res)=>{console.log("request sucessful","--===---=",res)
+  return res.json()}).then((res)=>{console.log(res.data)}).catch(err=>console.log(err))
+}
   const rows = [
     createData(
       formInputValues.startDate,
@@ -312,6 +319,7 @@ function FilterComponet() {
               startIcon={<FilterAltIcon />}
               sx={{ height: "40px" }}
               onClick={() => {
+                fetchTweetApi()
                 console.log(formInputValues);
               }}
             >

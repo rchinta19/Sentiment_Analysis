@@ -16,10 +16,11 @@ import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import { useSelector, useDispatch } from "react-redux";
 function GeographicalTweetCompnent({ title, genderData, colors }) {
-  const allTweet = useSelector(
-    (state) => state.alltweet.value.geograpical_tweets
-  );
   const [cdata, setCData] = useState(genderData);
+  const allTweet = useSelector(
+    (state) => state.alltweet.value.geographical_tweets
+  );
+  console.log(allTweet)
   const settingDatafun = () => {
     const newData = Object.keys(allTweet).map((ele, index) => {
       switch (ele) {
@@ -45,6 +46,7 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
       }
     });
     setCData(newData);
+    console.log(newData)
   };
 
   const [selectValue, setSelectValue] = useState({
