@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import "./Filter.modules.css";
 import FormGroup from "@mui/material/FormGroup";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
@@ -27,22 +27,25 @@ import SendIcon from "@mui/icons-material/Send";
 import Stack from "@mui/material/Stack";
 // table Body
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
-
+import { allTweet } from "../../features/TweetSlice";
+import { useSelector, useDispatch } from "react-redux";
 function FilterComponet() {
   const currentDay = new Date();
   const [value, setValue] = React.useState([null, null]);
+
   const date = new Date();
 
+  const allTweet = useSelector((state) => state.alltweet.value);
   const [formInputValues, setFormInputValues] = useState({
-    gender: "Male",
-    startDate: moment(new Date()).format("YYYY-MM-DD"),
-    startTime: moment(new Date()).format(),
-    endDate: moment(new Date()).format("YYYY-MM-DD"),
-    endTime: new Date(),
-    country: "India",
-    city: "Hyderabad",
-    type: "Positive",
-    device: "Android",
+    gender: "All",
+    startDate: moment(date).format("l"),
+    startTime: date,
+    endDate: moment(date).format("l"),
+    endTime: date,
+    country: "All",
+    city: "All",
+    type: "All",
+    device: "All",
   });
   const formInputHandler = (e) => {
     console.log(e.target.name);
@@ -74,20 +77,49 @@ function FilterComponet() {
     },
   });
 
-  function createData(name, calories, fat, carbs, protein, y, k, j) {
-    return { name, calories, fat, carbs, protein, y, k, j };
+  function createData(
+    startDateTime,
+    endDateTime,
+    country,
+    city,
+    type,
+    device,
+    gender,
+    totalTweets
+  ) {
+    return {
+      startDateTime,
+      endDateTime,
+      country,
+      city,
+      type,
+      device,
+      gender,
+      totalTweets,
+    };
   }
+  const deviceCount = useMemo(() => {
+    let sum = 0;
+    if (formInputValues.device === "All") {
+      Object.keys(allTweet.device).forEach((ele) => {
+        sum += allTweet.device[ele];
+      });
+    }
+    return sum;
+  }, [formInputValues.device, allTweet]);
 
   const rows = [
     createData(
-      "dd/mm/yyyy hh:mm",
-      "dd/mm/yyyy hh:mm",
-      "India",
-      "Hyderabad",
-      "Positive",
-      "Android",
-      "Male",
-      123213
+      formInputValues.startDate,
+      formInputValues.endDate,
+      formInputValues.country,
+      formInputValues.city,
+      formInputValues.type,
+      formInputValues.device == "All"
+        ? deviceCount
+        : allTweet.device[formInputValues.device.toLocaleLowerCase()],
+      formInputValues.gender,
+      allTweet.totaltweets.total
     ),
   ];
   return (
@@ -107,6 +139,7 @@ function FilterComponet() {
                   }));
                 }}
                 renderInput={(params) => <TextField {...params} />}
+                format="DD-MM-YYYY"
               />
             }
             labelPlacement="top"
@@ -120,10 +153,11 @@ function FilterComponet() {
                 onChange={(newValue) => {
                   setFormInputValues((prev) => ({
                     ...prev,
-                    startTime: newValue.format("LTS"),
+                    startTime: newValue,
                   }));
                 }}
                 renderInput={(params) => <TextField {...params} />}
+                format="HH:mm:ss"
               />
             }
             labelPlacement="top"
@@ -141,6 +175,7 @@ function FilterComponet() {
                   }));
                 }}
                 renderInput={(params) => <TextField {...params} />}
+                format="DD/MM/YYYY"
               />
             }
             labelPlacement="top"
@@ -154,10 +189,11 @@ function FilterComponet() {
                 onChange={(newValue) => {
                   setFormInputValues((prev) => ({
                     ...prev,
-                    endTime: newValue.format("LT"),
+                    endTime: newValue,
                   }));
                 }}
                 renderInput={(params) => <TextField {...params} />}
+                format="HH:mm:ss"
               />
             }
             labelPlacement="top"
@@ -213,10 +249,12 @@ function FilterComponet() {
               onChange={(e) => {
                 setFormInputValues((prev) => ({
                   ...prev,
-                  Type: e.target.value,
+                  type: e.target.value,
                 }));
               }}
             >
+              <MenuItem value={"All"}>All</MenuItem>
+
               <MenuItem value={"Positive"}>Positive</MenuItem>
               <MenuItem value={"Negative"}>Negative</MenuItem>
               <MenuItem value={"Neutral"}>Neutral</MenuItem>
@@ -225,7 +263,7 @@ function FilterComponet() {
           labelPlacement="top"
         />
         <FormControlLabel
-          label="device"
+          label="Device"
           control={
             <Select
               labelId="demo-simple-select-label"
@@ -238,6 +276,7 @@ function FilterComponet() {
                 }));
               }}
             >
+              <MenuItem value={"All"}>All</MenuItem>
               <MenuItem value={"Android"}>Android</MenuItem>
               <MenuItem value={"IOS"}>iOS</MenuItem>
               <MenuItem value={"Web"}>Web</MenuItem>
@@ -259,6 +298,7 @@ function FilterComponet() {
                 }));
               }}
             >
+              <MenuItem value={"All"}>All</MenuItem>
               <MenuItem value={"Male"}>Male</MenuItem>
               <MenuItem value={"Female"}>Female</MenuItem>
             </Select>
@@ -300,15 +340,15 @@ function FilterComponet() {
             {rows.map((row) => (
               <TableRow key={row.name}>
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.startDateTime}
                 </TableCell>
-                <TableCell align="right">{row.calories}</TableCell>
-                <TableCell align="right">{row.fat}</TableCell>
-                <TableCell align="right">{row.carbs}</TableCell>
-                <TableCell align="right">{row.y}</TableCell>
-                <TableCell align="right">{row.j}</TableCell>
-                <TableCell align="right">{row.k}</TableCell>
-                <TableCell align="right">{row.j}</TableCell>
+                <TableCell align="right">{row.endDateTime}</TableCell>
+                <TableCell align="right">{row.country}</TableCell>
+                <TableCell align="right">{row.city}</TableCell>
+                <TableCell align="right">{row.type}</TableCell>
+                <TableCell align="right">{row.device}</TableCell>
+                <TableCell align="right">{row.gender}</TableCell>
+                <TableCell align="right">{row.totalTweets}</TableCell>
               </TableRow>
             ))}
           </TableBody>

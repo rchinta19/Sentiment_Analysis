@@ -1,5 +1,10 @@
 export const cities = [
   {
+    id: "0",
+    name: "All",
+    state: "All",
+  },
+  {
     id: "1",
     name: "Mumbai",
     state: "Maharashtra",
@@ -6106,6 +6111,7 @@ export const cities = [
   },
 ];
 export let state = [
+  "All",
   "Andhra Pradesh",
   "Arunachal Pradesh",
   "Assam",
@@ -6144,6 +6150,7 @@ export let state = [
   "Puducherry",
 ];
 export const countryList = [
+  "All",
   "Afghanistan",
   "Albania",
   "Algeria",

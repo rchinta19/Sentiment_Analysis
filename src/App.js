@@ -14,19 +14,13 @@ function App() {
   const dispatch = useDispatch();
   const allTweet = useSelector((state) => state.alltweet.value);
   useEffect(() => {
-    const intervelId = setInterval(() => {
-      fetch("https://62fdda8641165d66bfb2f60f.mockapi.io/sent/data/blog")
-        .then((res) => res.json())
-        .then((data) => {
-          console.log(data);
-          dispatch(Tweet(data));
-          return true;
-        });
-    }, 5000);
-
-    return () => {
-      clearInterval(intervelId);
-    };
+    fetch("https://62fdda8641165d66bfb2f60f.mockapi.io/sent/data/blog")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        dispatch(Tweet(data));
+        return true;
+      });
   }, []);
   return (
     <div className="App">
