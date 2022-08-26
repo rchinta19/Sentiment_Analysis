@@ -79,23 +79,7 @@ function DeviceBreakComponent() {
         <h2 className="grapheads">Device Breakdown</h2>
       </div>
       <div className="select-muis">
-        <div>
-          <FormControl fullWidth>
-            <Select
-              labelId="select-device"
-              id="demo-simple-select"
-              value={deviceName}
-              name="Device"
-              onChange={(e) => {
-                setDeviceName(e.target.value);
-              }}
-            >
-              <MenuItem value={"iOS"}>ios</MenuItem>
-              <MenuItem value={"Android"}>Android</MenuItem>
-              <MenuItem value={"Web"}>Web</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
+        <div></div>
       </div>
       <div>
         <PieChart width={550} height={500}>

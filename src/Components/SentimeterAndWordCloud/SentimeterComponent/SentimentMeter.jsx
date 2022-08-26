@@ -46,47 +46,7 @@ function SentimentMeter() {
       <div>
         <h2 className="grapheads">Sentiment Meter</h2>
       </div>
-      <div className="select-muis">
-        <FormControl fullWidth>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={tweetClassType.tweetclass}
-            name="range"
-            onChange={(e) => {
-              let mplace = () => {
-                let k = 0;
-                if (e.target.value === "Positive") {
-                  k = 2;
-                }
-                if (e.target.value === "Negative") {
-                  k = 1;
-                }
-                if (e.target.value === "Neutral") {
-                  k = 0;
-                }
-                let sum = 0;
-                for (let mad = 0; mad < sentData.length - 1; mad++) {
-                  sum += sentData[mad];
-                }
-                let i = sentData[k] / sum;
-
-                return parseFloat(i).toFixed(2);
-              };
-
-              setTweetClassType({
-                tweetclass: e.target.value,
-                meterPlace: mplace(),
-              });
-            }}
-          >
-            <MenuItem value={"All"}>all</MenuItem>
-            <MenuItem value={"Positive"}>Positive</MenuItem>
-            <MenuItem value={"Negative"}>Negative</MenuItem>
-            <MenuItem value={"Neutral"}>Neutral</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
+      <div className="select-muis"></div>
       <div className="gauge-component">
         <GaugeChart
           id="gauge-chart5"

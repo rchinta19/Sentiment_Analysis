@@ -20,7 +20,7 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
   const allTweet = useSelector(
     (state) => state.alltweet.value.geographical_tweets
   );
-  console.log(allTweet)
+  console.log(allTweet);
   const settingDatafun = () => {
     const newData = Object.keys(allTweet).map((ele, index) => {
       switch (ele) {
@@ -46,7 +46,7 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
       }
     });
     setCData(newData);
-    console.log(newData)
+    console.log(newData);
   };
 
   const [selectValue, setSelectValue] = useState({
@@ -78,60 +78,7 @@ function GeographicalTweetCompnent({ title, genderData, colors }) {
       <div>
         <h2 className="grapheads">{title ? title : "Geographical Tweets"}</h2>
       </div>
-      <div className="select-muis">
-        <div>
-          <FormControl fullWidth>
-            {genderData ? (
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={selectValue.time}
-                name="time"
-                onChange={selectChangeHandler}
-              >
-                <MenuItem value={"This Week"}>This Week</MenuItem>
-                <MenuItem value={"Month"}>Month</MenuItem>
-                <MenuItem value={"year"}>Year</MenuItem>
-              </Select>
-            ) : (
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={selectValue.state}
-                name="state"
-                onChange={selectChangeHandler}
-              >
-                {state.map((ele, index) => (
-                  <MenuItem value={ele} key={index}>
-                    {ele}
-                  </MenuItem>
-                ))}
-              </Select>
-            )}
-          </FormControl>
-        </div>
-        <div>
-          <FormControl fullWidth>
-            {genderData ? (
-              <></>
-            ) : (
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                value={selectValue.city}
-                name="city"
-                onChange={selectChangeHandler}
-              >
-                {cities.map((ele, index) => (
-                  <MenuItem value={ele.name} key={index}>
-                    {ele.name}
-                  </MenuItem>
-                ))}
-              </Select>
-            )}
-          </FormControl>
-        </div>
-      </div>
+      <div className="select-muis"></div>
       <div className="bgraph">
         <ResponsiveContainer>
           <BarChart

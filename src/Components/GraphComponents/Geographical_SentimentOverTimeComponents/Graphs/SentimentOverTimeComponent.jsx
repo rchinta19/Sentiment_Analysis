@@ -94,21 +94,7 @@ function SentimentOverTimeComponent() {
       <div>
         <h2 className="grapheads">Sentiment Over Time</h2>
       </div>
-      <div className="select-muis">
-        <FormControl fullWidth>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={range}
-            name="range"
-            onChange={selectChangeHandler}
-          >
-            <MenuItem value={"This Week"}>This Week</MenuItem>
-            <MenuItem value={"This Month"}>This Month</MenuItem>
-            <MenuItem value={"This Year"}>This Year</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
+      <div className="select-muis"></div>
       <div>
         <LineChart width={600} height={520} data={cdata}>
           <XAxis dataKey="name" />

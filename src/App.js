@@ -14,10 +14,10 @@ function App() {
   const dispatch = useDispatch();
   const allTweet = useSelector((state) => state.alltweet.value);
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/data")
+    fetch("https://62fdda8641165d66bfb2f60f.mockapi.io/sent/data/blog")
       .then((res) => res.json())
       .then((data) => {
-       console.log("Data","=======",data)
+        console.log("Data", "=======", data);
         dispatch(Tweet(data));
         return true;
       });
